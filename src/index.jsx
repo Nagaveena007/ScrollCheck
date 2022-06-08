@@ -15,8 +15,8 @@ function App() {
   return (
     <Router>
         <div className="App" />
-        <Route exact path="/" component={ScrollCheck} />
-        <Route exact path="/page" component={MyPage} />
+        <Route exact path="/page" component={ScrollCheck} />
+        <Route exact path="/" component={MyPage} />
     </Router>
   )
 }
