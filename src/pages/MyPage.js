@@ -1,16 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import usePageBottom from "./usePageBottom";
+import usePageBottomPercentage from "./usePageBottomPercentage";
 
 import useScrollPosition from "./useScrollPosition";
 
 const MyPage = () => {
   const scrollPosition = useScrollPosition();
-
   console.log(scrollPosition);
 
+  const reachedBottomPercentage = usePageBottomPercentage();
+  const TotalHeightOfTheContent=reachedBottomPercentage+scrollPosition;
+  const PageCoveredInPercentage =Math.ceil((scrollPosition/TotalHeightOfTheContent)*100);
+  console.log("reachedBottomPercentage",PageCoveredInPercentage);
+ 
+
+
   const reachedBottom = usePageBottom();
-  console.log("reachedBottom", reachedBottom);
+  //console.log("reachedBottom", reachedBottom);
 
   return (
     <Description>
