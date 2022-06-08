@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import usePageBottom from "./usePageBottom";
 
 import useScrollPosition from "./useScrollPosition";
 
@@ -7,6 +8,9 @@ const MyPage = () => {
   const scrollPosition = useScrollPosition();
 
   console.log(scrollPosition);
+
+  const reachedBottom = usePageBottom();
+  console.log("reachedBottom", reachedBottom);
 
   return (
     <Description>
