@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import usePageBottom from "./usePageBottom";
 import usePageBottomPercentage from "./usePageBottomPercentage";
 
 import useScrollPosition from "./useScrollPosition";
@@ -11,14 +10,9 @@ const MyPage = () => {
 
   const reachedBottomPercentage = usePageBottomPercentage();
   const TotalHeightOfTheContent=reachedBottomPercentage+scrollPosition;
-  const PageCoveredInPercentage =Math.ceil((scrollPosition/TotalHeightOfTheContent)*100);
-  console.log("reachedBottomPercentage",PageCoveredInPercentage);
+  const PageScrolledInPercentage =Math.ceil((scrollPosition/TotalHeightOfTheContent)*100);
+  console.log("reachedBottomPercentage",PageScrolledInPercentage);
  
-
-
-  const reachedBottom = usePageBottom();
-  //console.log("reachedBottom", reachedBottom);
-
   return (
     <Description>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,

@@ -9,9 +9,9 @@ const usePageBottomPercentage = () => {
       const innerHeight = window.innerHeight;
       const scrollTop = document.documentElement.scrollTop;
 
-      const hasReachedBottomPersentage = offsetHeight - (innerHeight + scrollTop);
+      const PageScrolledInPercentage = offsetHeight - (innerHeight + scrollTop);
 
-      setReachedBottomPercentage(hasReachedBottomPersentage);
+      setReachedBottomPercentage(PageScrolledInPercentage);
     };
 
     window.addEventListener("scroll", handleScroll);
