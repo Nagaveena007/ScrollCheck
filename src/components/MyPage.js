@@ -1,19 +1,50 @@
 import React from "react";
 import styled from "styled-components";
 import usePageBottomPercentage from "./usePageBottomPercentage";
-
 import useScrollPosition from "./useScrollPosition";
+import {useAppAlertSnackbar,AppAlertSnackbar} from "../AlertComponent"
+import { Button } from "@mui/material";
+  const MyPage = React.forwardRef(({ ...props }, ref) => {
 
-const MyPage = () => {
   const scrollPosition = useScrollPosition();
-  console.log(scrollPosition);
-
   const reachedBottomPercentage = usePageBottomPercentage();
-  const TotalHeightOfTheContent=reachedBottomPercentage+scrollPosition;
-  const PageScrolledInPercentage =Math.ceil((scrollPosition/TotalHeightOfTheContent)*100);
-  console.log("reachedBottomPercentage",PageScrolledInPercentage);
- 
+   // console.log(scrollPosition);
+    const TotalHeightOfTheContent=reachedBottomPercentage+scrollPosition;
+    const PageScrolledInPercentage =Math.ceil((scrollPosition/TotalHeightOfTheContent)*100);
+    //console.log("reachedBottomPercentage",PageScrolledInPercentage);
+
+
+    const {
+      // The MUI theme object.
+      theme
+    } = props;
+  
+    // State of alert messages.
+    const [alertMessages, setAlertMessages] = React.useState({});
+  
+    // Callback of set success messages.
+    const onClickSuccess = React.useCallback(
+      (event) => {
+        event.preventDefault();
+        setAlertMessages({ severity: "success", message: "Success messages" });
+      },
+      [setAlertMessages]
+    );
+  
+    // The props of app alert snackbar.
+    const AppAlertSnackbarProps = useAppAlertSnackbar({
+      alertMessages: alertMessages
+    });
+
+
   return (
+    <>
+       <Button
+            onClick={onClickSuccess}
+            variant={"contained"}
+            color={"primary"}
+            children={"Success"}
+          />
     <Description>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
       molestiae quas vel sint commodi repudiandae consequuntur voluptatum
@@ -58,9 +89,56 @@ const MyPage = () => {
       temporibus sint culpa, recusandae aliquam numquam totam ratione voluptas
       quod exercitationem fuga. Possimus quis earum veniam quasi aliquam
       eligendi, placeat qui corporis!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+      molestiae quas vel sint commodi repudiandae consequuntur voluptatum
+      laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga
+      praesentium optio, eaque rerum! Provident similique accusantium nemo
+      autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto
+      voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit
+      sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas
+      aliquid. Reprehenderit, quia. Quo neque error repudiandae fuga? Ipsa
+      laudantium molestias eos sapiente officiis modi at sunt excepturi expedita
+      sint? Sed quibusdam recusandae alias error harum maxime adipisci amet
+      laborum. Perspiciatis minima nesciunt dolorem! Officiis iure rerum
+      voluptates a cumque velit quibusdam sed amet tempora. Sit laborum ab, eius
+      fugit doloribus tenetur fugiat, temporibus enim commodi iusto libero magni
+      deleniti quod quam consequuntur! Commodi minima excepturi repudiandae
+      velit hic maxime doloremque. Quaerat provident commodi consectetur veniam
+      similique ad earum omnis ipsum saepe, voluptas, hic voluptates pariatur
+      est explicabo fugiat, dolorum eligendi quam cupiditate excepturi mollitia
+      maiores labore suscipit quas? Nulla, placeat. Voluptatem quaerat non
+      architecto ab laudantium modi minima sunt esse temporibus sint culpa,
+      recusandae aliquam numquam totam ratione voluptas quod exercitationem
+      fuga. Possimus quis earum veniam quasi aliquam eligendi, placeat qui
+      corporis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
+      mollitia, molestiae quas vel sint commodi repudiandae consequuntur
+      voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat
+      iusto fuga praesentium optio, eaque rerum! Provident similique accusantium
+      nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias
+      architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut!
+      Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum
+      debitis quas aliquid. Reprehenderit, quia. Quo neque error repudiandae
+      fuga? Ipsa laudantium molestias eos sapiente officiis modi at sunt
+      excepturi expedita sint? Sed quibusdam recusandae alias error harum maxime
+      adipisci amet laborum. Perspiciatis minima nesciunt dolorem! Officiis iure
+      rerum voluptates a cumque velit quibusdam sed amet tempora. Sit laborum
+      ab, eius fugit doloribus tenetur fugiat, temporibus enim commodi iusto
+      libero magni deleniti quod quam consequuntur! Commodi minima excepturi
+      repudiandae velit hic maxime doloremque. Quaerat provident commodi
+      consectetur veniam similique ad earum omnis ipsum saepe, voluptas, hic
+      voluptates pariatur est explicabo fugiat, dolorum eligendi quam cupiditate
+      excepturi mollitia maiores labore suscipit quas? Nulla, placeat.
+      Voluptatem quaerat non architecto ab laudantium modi minima sunt esse
+      temporibus sint culpa, recusandae aliquam numquam totam ratione voluptas
+      quod exercitationem fuga. Possimus quis earum veniam quasi aliquam
+      eligendi, placeat qui corporis!
     </Description>
+    {PageScrolledInPercentage ===100 ?
+          <AppAlertSnackbar {...AppAlertSnackbarProps} ref={ref} />
+          :<div/>}
+    </>
   );
-};
+})
 
 export default MyPage;
 
