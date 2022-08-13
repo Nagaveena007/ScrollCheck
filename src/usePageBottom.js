@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-const usePageBottomPercentage = () => {
-  const [reachedBottomPercentage, setReachedBottomPercentage] = useState(null);
+const usePageBottom = () => {
+  const [reachedBottom, setReachedBottom] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -9,9 +9,9 @@ const usePageBottomPercentage = () => {
       const innerHeight = window.innerHeight;
       const scrollTop = document.documentElement.scrollTop;
 
-      const PageScrolledInPercentage = offsetHeight - (innerHeight + scrollTop);
+      const hasReachedBottom = offsetHeight - (innerHeight + scrollTop) <= 10;
 
-      setReachedBottomPercentage(PageScrolledInPercentage);
+      setReachedBottom(hasReachedBottom);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -19,7 +19,7 @@ const usePageBottomPercentage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return reachedBottomPercentage;
+  return reachedBottom;
 };
 
-export default usePageBottomPercentage;
+export default usePageBottom;

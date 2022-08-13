@@ -1,0 +1,23 @@
+#myPage{
+    border-radius: 20px;
+    line-height: 150%;
+}
+#wrapperApp{
+    font-family: "Roboto";
+    margin: 40px;
+  
+    display: grid;
+    row-gap: 20px;
+    justify-content: center;
+}
+#titleApp{
+        margin: 0;
+      display: grid;
+      row-gap: 10px;
+}
+#backgroundPic{
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    z-index: -1;
+}
